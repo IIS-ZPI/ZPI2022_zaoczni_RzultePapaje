@@ -1,5 +1,6 @@
 print("Rzulte Papaje\nScrum Master & Tester – jowczar\nckarczewski\nDudzinski-Robert\nArtur229322\nShanghaiG")
 
+#Dodawanie
 def addition(a,b):
   return a+b
 
