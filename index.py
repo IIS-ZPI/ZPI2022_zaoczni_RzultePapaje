@@ -8,3 +8,9 @@ def odejmowanko(a,b)
 
 def multiplication(x,y):
   return x*y
+
+def division(a,b):
+    if(b==0):
+        return
+    else:
+        return a/b
