@@ -1,1 +1,1 @@
-print("Rzulte Papaje\nScrum Master & Tester – jowczar")
+print("Rzulte Papaje\nScrum Master & Tester – jowczar\nDudzinski-Robert")
