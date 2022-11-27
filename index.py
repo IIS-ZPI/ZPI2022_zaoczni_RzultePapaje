@@ -2,3 +2,6 @@ print("Rzulte Papaje\nScrum Master & Tester – jowczar\nckarczewski\nDudzinski-
 
 def addition(a,b):
   return a+b
+
+def multiplication(x,y):
+  return x*y
