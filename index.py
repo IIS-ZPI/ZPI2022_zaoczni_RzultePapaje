@@ -7,7 +7,6 @@ def addition(a,b):
 def odejmowanko(a,b)
     return a - b
 
-# Should be a, b perhaps?
 def multiplication(x,y):
   return x*y
 
