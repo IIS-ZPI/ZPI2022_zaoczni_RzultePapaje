@@ -1,4 +1,4 @@
 #Pycharm
 .idea
 venv
-data import/test_data_import.py
+**/data import/test_data_import.py
