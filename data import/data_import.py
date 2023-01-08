@@ -1,6 +1,7 @@
 from datetime import timedelta, date
 import psycopg2
 import requests
+import configparser
 
 
 def data_import():
@@ -9,7 +10,7 @@ def data_import():
 
 	conn = connect_to_db()
 	for table_type in tables:
-		url_date_start = date(2002, 1, 2)
+		url_date_start = date(2023, 1, 2)
 		url_date_end = url_date_start + timedelta(days=93)
 		print("Tabela", table_type)
 		while True:
@@ -63,7 +64,12 @@ def get_data(url_type, url_date_start, url_date_end):
 
 
 def connect_to_db():
-	return psycopg2.connect(host='localhost', database='test_app_nbp', user='postgres', password='postgres')
+	config = parse_config()
+	return psycopg2.connect(
+		host=config['DATABASE']['Host'],
+		dbname=config['DATABASE']['Name'],
+		user=config['DATABASE']['Username'],
+		password=config['DATABASE']['Password'])
 
 
 def execute_inserts(conn, insert_table):
@@ -73,6 +79,12 @@ def execute_inserts(conn, insert_table):
 			cur.execute(insert)
 		conn.commit()
 	cur.close()
+
+
+def parse_config():
+	config = configparser.ConfigParser()
+	config.read('config.ini')
+	return config
 
 
 if __name__ == '__main__':
