@@ -1,5 +1,5 @@
 from datetime import timedelta, date
-
+import psycopg2
 import requests
 
 
@@ -7,11 +7,15 @@ def data_import():
 	# tables = ['A', 'B', 'C']
 	tables = ['A']
 	data_table = []
+	insert_table = []
 	for table in tables:
 		resp = get_data(table)
 		for x in resp:
 			data_table.append(x)
-		create_inserts(data_table)
+		insert_table = create_inserts(data_table)
+	conn = connect_to_db()
+	execute_inserts(conn, insert_table)
+	conn.close()
 
 
 def create_url(url_type):
@@ -47,6 +51,18 @@ def create_inserts(data_table):
 
 def get_data(url_type):
 	return requests.get(url=create_url(url_type)).json()
+
+
+def connect_to_db():
+	return psycopg2.connect(host='localhost', database='test_app_nbp', user='postgres', password='postgres')
+
+
+def execute_inserts(conn, insert_table):
+	cur = conn.cursor()
+	for inserts in insert_table:
+		for insert in inserts:
+			cur.execute(insert)
+	conn.commit()
 
 
 if __name__ == '__main__':
