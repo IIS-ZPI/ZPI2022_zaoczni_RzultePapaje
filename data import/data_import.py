@@ -30,12 +30,10 @@ def data_import():
 
 
 def create_url(url_type, url_date_start, url_date_end):
-	# start_date = date(2002, 1, 2)
 	url_table_a = 'http://api.nbp.pl/api/exchangerates/tables/A/'
 	url_table_b = 'http://api.nbp.pl/api/exchangerates/tables/B/'
 	url_table_c = 'http://api.nbp.pl/api/exchangerates/tables/C/'
-	# url_date_start = date(2002, 1, 2)
-	# url_date_end = url_date_start + timedelta(days=93)
+
 	if url_type == 'A':
 		return url_table_a + str(url_date_start) + '/' + str(url_date_end)
 	if url_type == 'B':
@@ -45,7 +43,7 @@ def create_url(url_type, url_date_start, url_date_end):
 
 
 def create_inserts(data_table, table_type):
-	insert_start = "INSERT INTO tabela_" + table_type + " values(default,'"
+	insert_start = "INSERT INTO tabela_" + table_type.lower() + " values(default,'"
 	insert_table = []
 	tmp = []
 	no = 'no'
