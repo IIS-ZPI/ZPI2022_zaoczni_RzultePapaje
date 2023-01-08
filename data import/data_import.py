@@ -1,14 +1,17 @@
 from datetime import timedelta, date
+
 import requests
 
 
 def data_import():
-	tables = ['A', 'B', 'C']
-	insert_table = []
+	# tables = ['A', 'B', 'C']
+	tables = ['A']
+	data_table = []
 	for table in tables:
-		resp = requests.get(url=create_url(table))
-		for x in resp.json():
-			insert_table.append(x)
+		resp = get_data(table)
+		for x in resp:
+			data_table.append(x)
+		create_inserts(data_table)
 
 
 def create_url(url_type):
@@ -25,8 +28,26 @@ def create_url(url_type):
 	if url_type == 'C':
 		return url_table_c + str(url_date_start) + '/' + str(url_date_end)
 
-def create_inserts(insert_table):
-	pass
+
+def create_inserts(data_table):
+	insert_start = "INSERT INTO tabela_a values(default,'"
+	insert_table = []
+	tmp = []
+	no = 'no'
+	effective_date = 'effectiveDate'
+	for line in data_table:
+		insert_command = insert_start + line[no] + "','" + line[effective_date] + "'"
+		for x in line['rates']:
+			insert_multiple_values = insert_command + ",'" + x['code'] + "'," + str(x['mid']) + ");"
+			tmp.append(insert_multiple_values)
+		insert_table.append(tmp)
+		tmp = []
+	return insert_table
+
+
+def get_data(url_type):
+	return requests.get(url=create_url(url_type)).json()
+
 
 if __name__ == '__main__':
 	data_import()
