@@ -4,27 +4,38 @@ import requests
 
 
 def data_import():
-	# tables = ['A', 'B', 'C']
-	tables = ['A']
+	tables = ['A', 'B']
 	data_table = []
-	insert_table = []
-	for table in tables:
-		resp = get_data(table)
-		for x in resp:
-			data_table.append(x)
-		insert_table = create_inserts(data_table)
+
 	conn = connect_to_db()
-	execute_inserts(conn, insert_table)
+	for table_type in tables:
+		url_date_start = date(2002, 1, 2)
+		url_date_end = url_date_start + timedelta(days=93)
+		print("Tabela", table_type)
+		while True:
+			if url_date_end > date.today():
+				url_date_end = date.today()
+			if url_date_start == date.today():
+				break
+			resp = get_data(table_type, url_date_start, url_date_end)
+			for x in resp:
+				data_table.append(x)
+			insert_table = create_inserts(data_table, table_type)
+			execute_inserts(conn, insert_table)
+			data_table.clear()
+			url_date_start = url_date_end
+			url_date_end = url_date_start + timedelta(days=93)
+
 	conn.close()
 
 
-def create_url(url_type):
+def create_url(url_type, url_date_start, url_date_end):
 	# start_date = date(2002, 1, 2)
 	url_table_a = 'http://api.nbp.pl/api/exchangerates/tables/A/'
 	url_table_b = 'http://api.nbp.pl/api/exchangerates/tables/B/'
 	url_table_c = 'http://api.nbp.pl/api/exchangerates/tables/C/'
-	url_date_start = date(2002, 1, 2)
-	url_date_end = url_date_start + timedelta(days=93)
+	# url_date_start = date(2002, 1, 2)
+	# url_date_end = url_date_start + timedelta(days=93)
 	if url_type == 'A':
 		return url_table_a + str(url_date_start) + '/' + str(url_date_end)
 	if url_type == 'B':
@@ -33,8 +44,8 @@ def create_url(url_type):
 		return url_table_c + str(url_date_start) + '/' + str(url_date_end)
 
 
-def create_inserts(data_table):
-	insert_start = "INSERT INTO tabela_a values(default,'"
+def create_inserts(data_table, table_type):
+	insert_start = "INSERT INTO tabela_" + table_type + " values(default,'"
 	insert_table = []
 	tmp = []
 	no = 'no'
@@ -49,8 +60,8 @@ def create_inserts(data_table):
 	return insert_table
 
 
-def get_data(url_type):
-	return requests.get(url=create_url(url_type)).json()
+def get_data(url_type, url_date_start, url_date_end):
+	return requests.get(create_url(url_type, url_date_start, url_date_end)).json()
 
 
 def connect_to_db():
@@ -62,7 +73,8 @@ def execute_inserts(conn, insert_table):
 	for inserts in insert_table:
 		for insert in inserts:
 			cur.execute(insert)
-	conn.commit()
+		conn.commit()
+	cur.close()
 
 
 if __name__ == '__main__':
