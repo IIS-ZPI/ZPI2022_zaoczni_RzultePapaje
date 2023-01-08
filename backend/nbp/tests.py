@@ -17,3 +17,4 @@ class ExampleTestCase(SimpleTestCase):
     #Temporarily disabled bad test
     # def test_bad_test_that_should_work(self):
     #     self.assertEqual(self.number2, self.number3)
+
