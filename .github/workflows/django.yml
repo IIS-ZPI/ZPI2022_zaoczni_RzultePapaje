@@ -27,8 +27,8 @@ jobs:
       - name: Coverage report
         run: |
           pip install coverage
-          coverage run manage.py test
+          coverage run backend/manage.py test
           coverage report
       - name: Run Tests
         run: |
-          python manage.py test
+          python backend/manage.py test
