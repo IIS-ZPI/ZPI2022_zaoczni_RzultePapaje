@@ -5,12 +5,13 @@ import configparser
 
 
 def data_import():
-	tables = ['A', 'B']
+	tables = ['B', 'C']
+	# tables = ['A']
 	data_table = []
 
 	conn = connect_to_db()
 	for table_type in tables:
-		url_date_start = date(2023, 1, 2)
+		url_date_start = date(2002, 1, 2)
 		url_date_end = url_date_start + timedelta(days=93)
 		print("Tabela", table_type)
 		while True:
@@ -21,7 +22,13 @@ def data_import():
 			resp = get_data(table_type, url_date_start, url_date_end)
 			for x in resp:
 				data_table.append(x)
-			insert_table = create_inserts(data_table, table_type)
+			if table_type == 'A':
+				insert_table = create_inserts_a(data_table, table_type)
+			elif table_type == 'C':
+				insert_table = create_inserts_c(data_table, table_type)
+			else:
+				insert_table = create_inserts(data_table, table_type)
+			#print(insert_table)
 			execute_inserts(conn, insert_table)
 			data_table.clear()
 			url_date_start = url_date_end
@@ -47,13 +54,40 @@ def create_inserts(data_table, table_type):
 	insert_start = "INSERT INTO tabela_" + table_type.lower() + " values(default,'"
 	insert_table = []
 	tmp = []
-	no = 'no'
-	effective_date = 'effectiveDate'
 	for line in data_table:
-		insert_command = insert_start + line[no] + "','" + line[effective_date] + "'"
-		for x in line['rates']:
-			insert_multiple_values = insert_command + ",'" + x['code'] + "'," + str(x['mid']) + ");"
-			tmp.append(insert_multiple_values)
+		insert_command = insert_start + line['no'] + "','" + line['effectiveDate'] + "'"
+		for rate in line['rates']:
+			insert_command_full = insert_command + ",'" + rate['code'] + "'," + str(rate['mid']) + ");"
+			tmp.append(insert_command_full)
+		insert_table.append(tmp)
+		tmp = []
+	return insert_table
+
+
+def create_inserts_c(data_table, table_type):
+	insert_start = "INSERT INTO tabela_" + table_type.lower() + " values(default,'"
+	insert_table = []
+	tmp = []
+	for line in data_table:
+		insert_command = insert_start + line['no'] + "','" + line['effectiveDate'] + "'"
+		for rate in line['rates']:
+			insert_command_full = insert_command + ",'" + rate['code'] + "'," + str(rate['bid']) + "," + str(
+				rate['ask']) + ");"
+			tmp.append(insert_command_full)
+		insert_table.append(tmp)
+		tmp = []
+	return insert_table
+
+
+def create_inserts_a(data_table, table_type):
+	insert_start = "INSERT INTO tabela_" + table_type.lower() + " values(default,'"
+	insert_table = []
+	tmp = []
+	for line in data_table:
+		insert_command = insert_start + line['no'] + "','" + line['effectiveDate'] + "'"
+		for rate in line['rates']:
+			insert_command_full = insert_command + ",'" + rate['country'] + "','" + rate['code'] + "'," + str(rate['mid']) + ");"
+			tmp.append(insert_command_full)
 		insert_table.append(tmp)
 		tmp = []
 	return insert_table
