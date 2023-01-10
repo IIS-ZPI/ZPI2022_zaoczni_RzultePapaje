@@ -14,7 +14,7 @@ scrum master | Justyna Owczarek | 229301 | jowczar
 Area | Tools & technologies
 --- | ---
 Backend | Python – Django
-Frontend | JavaScript – ReactJS
+Frontend | TypeScript – ReactJS
 Database | PostgreSQL
 Hosting + CI + CD | Vercel + GitHub
 Project management | Jira
