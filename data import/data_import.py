@@ -5,33 +5,31 @@ import configparser
 
 
 def data_import():
-	tables = ['B', 'C']
-	# tables = ['A']
+	# tables = ['A','B', 'C']
+	tables = ['C']
 	data_table = []
 
 	conn = connect_to_db()
 	for table_type in tables:
-		url_date_start = date(2002, 1, 2)
+		url_date_start = date(2002, 1, 1)
 		url_date_end = url_date_start + timedelta(days=93)
 		print("Tabela", table_type)
 		while True:
 			if url_date_end > date.today():
 				url_date_end = date.today()
-			if url_date_start == date.today():
+			if url_date_start == date.today() or url_date_start > date.today():
 				break
 			resp = get_data(table_type, url_date_start, url_date_end)
 			for x in resp:
 				data_table.append(x)
-			if table_type == 'A':
-				insert_table = create_inserts_a(data_table, table_type)
-			elif table_type == 'C':
+			if table_type == 'C':
 				insert_table = create_inserts_c(data_table, table_type)
 			else:
 				insert_table = create_inserts(data_table, table_type)
-			#print(insert_table)
+			# print(insert_table)
 			execute_inserts(conn, insert_table)
 			data_table.clear()
-			url_date_start = url_date_end
+			url_date_start = url_date_end + timedelta(days=1)
 			url_date_end = url_date_start + timedelta(days=93)
 
 	conn.close()
@@ -57,7 +55,12 @@ def create_inserts(data_table, table_type):
 	for line in data_table:
 		insert_command = insert_start + line['no'] + "','" + line['effectiveDate'] + "'"
 		for rate in line['rates']:
-			insert_command_full = insert_command + ",'" + rate['code'] + "'," + str(rate['mid']) + ");"
+			try:
+				insert_command_full = insert_command + ",'" + rate['country'] + "','" + rate['code'] + "'," + str(
+					rate['mid']) + ");"
+			except KeyError:
+				insert_command_full = insert_command + "," + "null" + ",'" + rate['code'] + "'," + str(
+					rate['mid']) + ");"
 			tmp.append(insert_command_full)
 		insert_table.append(tmp)
 		tmp = []
@@ -69,10 +72,12 @@ def create_inserts_c(data_table, table_type):
 	insert_table = []
 	tmp = []
 	for line in data_table:
-		insert_command = insert_start + line['no'] + "','" + line['effectiveDate'] + "'"
+		insert_command = insert_start + line['no'] + "','" + line['tradingDate'] + "','" + line['effectiveDate'] + "'"
 		for rate in line['rates']:
-			insert_command_full = insert_command + ",'" + rate['code'] + "'," + str(rate['bid']) + "," + str(
-				rate['ask']) + ");"
+			try:
+				insert_command_full = insert_command + ",'" + rate['country'] + "','" + rate['code'] + "'," + str(rate['bid']) + "," + str(rate['ask']) + ");"
+			except KeyError:
+				insert_command_full = insert_command + "," + "null" + ",'" + rate['code'] + "'," + str(rate['bid']) + "," + str(rate['ask']) + ");"
 			tmp.append(insert_command_full)
 		insert_table.append(tmp)
 		tmp = []
@@ -86,7 +91,11 @@ def create_inserts_a(data_table, table_type):
 	for line in data_table:
 		insert_command = insert_start + line['no'] + "','" + line['effectiveDate'] + "'"
 		for rate in line['rates']:
-			insert_command_full = insert_command + ",'" + rate['country'] + "','" + rate['code'] + "'," + str(rate['mid']) + ");"
+			try:
+				insert_command_full = insert_command + ",'" + rate['country'] + "','" + rate['code'] + "'," + str(
+					rate['mid']) + ");"
+			except KeyError:
+				insert_command_full = insert_command + "," + "null" + ",'" + rate['code'] + "'," + str(rate['mid']) + ");"
 			tmp.append(insert_command_full)
 		insert_table.append(tmp)
 		tmp = []
