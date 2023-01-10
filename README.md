@@ -1,4 +1,5 @@
 # Web application – Team Rzułte Papaje
+The assignment is available [here](./ZPI%20L2%20-%20Zadanie_projektowe.pdf)
 
 ## Team members
 Role | Name | TUL Identificator | GH login
