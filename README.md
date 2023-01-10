@@ -9,7 +9,6 @@ dev1 | Robert Dudziński | 229248 | Dudzinski-Robert
 dev2 | Cezary Karczewski | 229268 | ckarczewski
 dev3 | Artur Szydłowski | 229322 | Artur229322
 scrum master | Justyna Owczarek | 229301 | jowczar
-<br>
 
 ## Tools & technologies 
 Area | Tools & technologies
@@ -20,7 +19,6 @@ Database | PostgreSQL
 Hosting + CI + CD | Vercel + GitHub
 Project management | Jira
 Team communication | Discord + Teams
-<br>
 
 ## Project management
 Backlog, roadmap, estimates, issues, kanban of active sprint and sprint reports are available on Jira [here](https://politechnika.atlassian.net/jira/software/c/projects/ZPI/boards/1). You can also find the burndown chart for each sprint here.
