@@ -1,5 +1,5 @@
 # Web application – Team Rzułte Papaje
-The assignment is available [here](./ZPI%20L2%20-%20Zadanie_projektowe.pdf)
+The assignment is available [here](./ZPI%20L2%20-%20Zadanie_projektowe.pdf).
 
 ## Team members
 Role | Name | TUL Identificator | GH login
@@ -22,7 +22,7 @@ Project management | Jira
 Team communication | Discord + Teams
 
 ## Project management
-Backlog, roadmap, estimates, issues, kanban of active sprint and sprint reports are available on Jira [here](https://politechnika.atlassian.net/jira/software/c/projects/ZPI/boards/1). You can also find the burndown chart for each sprint here.
+Backlog, roadmap, estimates, issues, kanban of active sprint and sprint reports are available on Jira [here](https://politechnika.atlassian.net/jira/software/c/projects/ZPI/boards/1). You can also find the burndown chart for each sprint there.
 <br>
 ### Understanding client needs
 The team conducted two sprint meetings with the customer/Product Owner, determining the functional and non-functional requirements of the system. The result of these meetings is a [document available here](./RzultePapierze_zalozenia-v4.pdf).
@@ -30,22 +30,24 @@ The team conducted two sprint meetings with the customer/Product Owner, determin
 This was followed by a separate team meeting, estimating workloads, creating a roadmap with an approximate release schedule and defining user stories in the Jira tool.
 <br>
 ### Team meetings
-The team conducts weekly sprints. Retrospectives, estimation of the next sprint and task selection take place at meetings on Mondays. Since team members have varying working hours and are available mostly during the evenings, "daily" meetings to remove obstacles are held as needed.
+The team conducts weekly sprints. Retrospectives, estimation of the next sprint and task selection take place at meetings on Mondays. Since team members have varying working hours and are available mostly during the evenings, "daily" meetings are held as needed to remove obstacles.
 <br>
 
 ## Workflows & CI/CD
 The chosen system to ensure continuous integration is [Vercel](https://vercel.com).
-<br>
-Vercel is a fast-growing platform that enables deployment at every step of a project. It ensures that all changes in the repository are automatically built and deployed to the server. Vercel is fully integrated with GitHub. if a build fails, Vercel sends an email about it, it also includes this information in the Pull Request if the changes have been exposed for review. This makes it possible to react quickly to errors and fix them. No change will be implemented if the build breaks. Changes will be automatically rolled back by Vercel to the latest working version, so a working application is always ensured for users.
+<br><br>
+Vercel is a fast-growing platform that enables deployment at every step of a project. It ensures that all changes in the repository are automatically built and deployed to the server. 
+<br><br>
+Vercel is fully integrated with GitHub. If a build fails, Vercel sends an email about it, it also includes this information in the Pull Request if the changes have been requested for review. As a result, errors in the build can be addressed quickly. Changes that break the project will be automatically rolled back by Vercel to the latest working version, so a working application is always ensured for users.
 <br>
 ### Hosting
-With Vercel, we do not have to worry about hosting our application, as it is provided in the free version of the account. Additionally, each change gets its preview on Vercel so that the person working on a feature can share a link to the change on the server before it is accepted to the target branch of the code. This means the person reviewing the change does not have to run a local server – just click on the link and preview the changes in the browser.
+With Vercel, we do not have to worry about hosting our application, as it is provided in the free version of the account. Additionally, each change gets its preview on Vercel so the person working on a feature can share a link to the change on the server before it is accepted to the target branch of the code. This means the person reviewing the change does not have to run a local server – just click on the link and preview the changes in the browser.
 <br>
 ### Configuration values
-Vercel is offered in a serverless model and requires no special configuration - other than granting access to the repository, selecting the root directory (in our case, the backend and frontend are 2 separate projects on Vercel) and possibly setting other parameters (in our case, Vercel's default values were sufficient). In addition to these settings, you also had to supply environment variables, the same process as values placed in the [local .env files](#building-this-project-on-local-system).
+Vercel is offered in a serverless model and requires no special configuration - other than granting access to the repository, selecting the root directory (in our case, the backend and frontend are 2 separate projects on Vercel) and possibly setting other parameters (in our case, Vercel's default values were sufficient). In addition to these settings, you also have to supply environment variables. It is equivalent to values placed in the [local .env files](#building-this-project-on-local-system).
 <br>
 ### Access
-Due to the public visibility of this repository, Vercel account data will be made available at the request of the Product Owner - via a private channel.
+Due to the public visibility of this repository, Vercel account credentials will be made available at the request of the Product Owner - via a private channel.
 <br>
 ### Continuous Testing
 Two additional GitHub workflows have been introduced that take care of test execution.
