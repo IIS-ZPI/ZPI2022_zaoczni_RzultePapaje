@@ -1,7 +1,7 @@
-<h1>Data Import Script</h1>
+# Data Import Script
 The purpose of this script is to populate DB with historic NBP data.
 
-<h3>Dependencies</h3>
+## Dependencies
 Python version: Python 3.10 +
 
 Modules:
@@ -10,6 +10,6 @@ Modules:
 - [requests](https://pypi.org/project/requests/)
 - [configparser](https://docs.python.org/3/library/configparser.html)
 
-<h3>Usage</h3>
+## Usage
 Script should be used on empty database - no data should be present in tables.
 
