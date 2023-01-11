@@ -11,4 +11,4 @@ def index(request):
     result.append(standard_deviation(test))
     result.append(coefficient_of_variation(test))
     
-    return JsonResponse(result)
+    return JsonResponse(result, safe=False)
