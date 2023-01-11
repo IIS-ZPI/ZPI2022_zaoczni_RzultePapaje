@@ -1,6 +1,6 @@
 import math
-test = [181, 187, 196, 196, 198, 203, 207, 211, 215, 123, 199]
-test2 = [7, 4, -2]
+# test = [181, 187, 196, 196, 198, 203, 207, 211, 215, 123, 199]
+# test2 = [7, 4, -2]
 
 def median(numbers_array):
     currency_prices = sorted(numbers_array)
@@ -33,5 +33,9 @@ def standard_deviation(numbers_array):
     variation = sum(dominator) / len(dominator)
     return math.sqrt(variation)
 
-print(standard_deviation(test2))
+def coefficient_of_variation(numbers_array):
+    mean = sum(numbers_array) / len(numbers_array)
+    deviation = standard_deviation(numbers_array)
+    return mean / deviation
+
     
