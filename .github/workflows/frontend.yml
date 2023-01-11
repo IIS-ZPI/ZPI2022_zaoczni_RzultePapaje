@@ -6,7 +6,7 @@ on:
     paths: ["frontend/**"]
 
 jobs:
-  runner-job:
+  frontend-build:
     runs-on: ubuntu-latest
     defaults:
       run:
