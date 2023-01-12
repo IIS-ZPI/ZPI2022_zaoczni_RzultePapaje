@@ -1,4 +1,5 @@
 import React from 'react'
+import CurrencyPicker from '../../CurrencyPicker/CurrencyPicker'
 
 const CurrencyPair = () => {
   return (
@@ -14,6 +15,11 @@ const CurrencyPair = () => {
             <div className='flex justify-center row-start-1 lg:row-start-0 mb-[30px]'>
                 <div className='bg-white w-[85%] max-h-[300px] p-[10px] pb-[20px] rounded-lg shadow flex  flex-col items-center'>
                     <div className='mb-[10px] text-lg font-medium'>Wybierz waluty</div>
+                    <div className='flex justify-center lg:flex-col sm:flex-row flex-col items-center'>
+                            <CurrencyPicker countryCode='PLN'/>
+                            <div className='text-sm m-[5px] text-slate-600 italic'>-oraz-</div>
+                            <CurrencyPicker countryCode='GBP'/>
+                        </div>
                 </div>
             </div>
         </div>
