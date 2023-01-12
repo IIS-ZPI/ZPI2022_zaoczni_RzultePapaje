@@ -15,7 +15,8 @@ const CurrencyPicker = () => {
                 return (
                     <button 
                         className='h-[60px] w-[100%] flex items-center select-none hover:bg-gray-100' 
-                        key={index} 
+                        key={index}
+                        onMouseDown={(e) => selectCurrency(item)}
                         >
                         <div className='ml-[20px]'>
                             <CountryFlag countryCode={item.Country} size={40}/>
@@ -30,9 +31,28 @@ const CurrencyPicker = () => {
         )
     }
 
+    const selectCurrency = (item: Currency) => {
+        setCurrency(item);
+        toggleList();
+    }
+
     const onChange = (e: React.FormEvent<HTMLInputElement>) => {
         const newText = e.currentTarget.value
         setInputText(newText);
+
+        const newCurrencyList = currencyData.filter(item => {
+            return item.Country.toUpperCase().startsWith(newText.toUpperCase()) 
+                    || item.CurrencyCode.toUpperCase().startsWith(newText.toUpperCase()) 
+                    || item.CurrencyName.toUpperCase().startsWith(newText.toUpperCase());
+        })
+
+        setFilteredCurrency(newCurrencyList);
+    }
+
+    const toggleList = () => {
+        setOpen(!isOpen);
+        setInputText("");
+        setFilteredCurrency(currencyData);
     }
 
     useEffect(() => {
@@ -49,6 +69,7 @@ const CurrencyPicker = () => {
         <div>
             <button 
                 className='border-[2px] bg-white border-stone-300 h-[60px] min-w-[200px] rounded-md flex items-center select-none'
+                onClick={toggleList}
                 >
                 <div className='ml-[10px]'>
                     <CountryFlag/>
@@ -59,7 +80,7 @@ const CurrencyPicker = () => {
                 </div>
             </button>
 
-            <div className='absolute w-[250px] rounded-md shadow-md border-[1px] bg-white z-[99999]'>
+            {isOpen && <div className='absolute w-[250px] rounded-md shadow-md border-[1px] bg-white z-[99999]'>
                 <label className="relative block">
                     <span className="sr-only">Search</span>
                     <span className="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -78,7 +99,7 @@ const CurrencyPicker = () => {
                 <div className='w-[250px] overflow-scroll overflow-x-hidden' style={{height: `${Math.min(5 * 60, filteredCurrency.length * 60)}px`}}>
                     {renderFilteredCurrency()}
                 </div>
-            </div>
+            </div>}
         </div>
     )
 }
