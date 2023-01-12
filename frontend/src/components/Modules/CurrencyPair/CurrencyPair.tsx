@@ -5,6 +5,7 @@ import Button from '../../Button/Button'
 import CurrencyPicker from '../../CurrencyPicker/CurrencyPicker'
 
 const CurrencyPair = () => {
+    const [currencyPair, setCurrencyPair] = useState<string[]>(["PLN", "GBP"])
     const [labelName, setLabelName] = useState<string>("");
     const [labels, setLabels] = useState<string[]>(["-2", "-1", "0", '1', "2"]);
     const [currencyPairData, setCurrencyPairData] = useState<number[]>([12,45,65,32,34]);
@@ -45,6 +46,12 @@ const CurrencyPair = () => {
         ],
     };
 
+    const changeCurrency = (currencyCode: string, index: number) => {
+        const newCurrencyPair = [...currencyPair];
+        newCurrencyPair[index] = currencyCode;
+        setCurrencyPair(newCurrencyPair);
+    }
+
     return (
         <>
             <div className='flex items-center my-[50px]'>
@@ -61,9 +68,9 @@ const CurrencyPair = () => {
                     <div className='bg-white w-[85%] max-h-[300px] p-[10px] pb-[20px] rounded-lg shadow flex  flex-col items-center'>
                         <div className='mb-[10px] text-lg font-medium'>Wybierz waluty</div>
                         <div className='flex justify-center lg:flex-col sm:flex-row flex-col items-center'>
-                            <CurrencyPicker countryCode='PLN'/>
+                            <CurrencyPicker countryCode='PLN' onChange={(c) => changeCurrency(c, 0)}/>
                             <div className='text-sm m-[5px] text-slate-600 italic'>-oraz-</div>
-                            <CurrencyPicker countryCode='GBP'/>
+                            <CurrencyPicker countryCode='GBP' onChange={(c) => changeCurrency(c, 1)}/>
                         </div>
                         <Button text='Sprawdź'/>
                     </div>
