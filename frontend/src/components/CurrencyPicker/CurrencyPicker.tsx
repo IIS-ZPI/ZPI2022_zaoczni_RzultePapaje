@@ -49,6 +49,10 @@ const CurrencyPicker = () => {
         setFilteredCurrency(newCurrencyList);
     }
 
+    const onBlur = () => {
+        toggleList();
+    }
+
     const toggleList = () => {
         setOpen(!isOpen);
         setInputText("");
@@ -93,6 +97,8 @@ const CurrencyPicker = () => {
                         name="search"
                         onChange={onChange}
                         value={inputText}
+                        autoFocus
+                        onBlur={onBlur}
                         />
                 </label>
 
