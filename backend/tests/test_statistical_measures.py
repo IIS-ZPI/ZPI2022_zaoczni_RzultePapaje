@@ -43,6 +43,18 @@ class StatisticalMeasuresTestCase(TestCase):
         self.assertEquals(dominant(self.datasets[9]), 1.08111)
         self.assertEquals(dominant(self.datasets[10]), 0)
 
+    def test_standard_deviation(self):
+        self.assertEquals(standard_deviation(self.datasets[0]), None)
+        self.assertEquals(standard_deviation(self.datasets[1]), 0)
+        self.assertEquals(standard_deviation(self.datasets[2]), 2.2)
+        self.assertEquals(standard_deviation(self.datasets[3]), 23.853)
+        self.assertEquals(standard_deviation(self.datasets[4]), 2.872)
+        self.assertEquals(standard_deviation(self.datasets[5]), 3.162)
+        self.assertEquals(standard_deviation(self.datasets[6]), 9.787)
+        self.assertEquals(standard_deviation(self.datasets[7]), 29.866)
+        self.assertEquals(standard_deviation(self.datasets[8]), 0.125)
+        self.assertEquals(standard_deviation(self.datasets[9]), 0.106)
+        self.assertEquals(standard_deviation(self.datasets[10]), 0)
 
     #Temporarily disabled bad test
     # def test_bad_test_that_should_work(self):
