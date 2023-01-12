@@ -73,10 +73,21 @@ WSGI_APPLICATION = 'zpiproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "test_app_nbp_oeke",
+        'USER': "owner_nbp",
+        'PASSWORD': "xudCP9r6YYH2aM4FSrf4JGyxLsy8EHD7",
+        'HOST': "dpg-ceu5pqla4990mi8sug8g-a.frankfurt-postgres.render.com",
+        'PORT': "5432",  # 5432 by default
     }
 }
 
