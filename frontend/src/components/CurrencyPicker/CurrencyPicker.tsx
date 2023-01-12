@@ -76,11 +76,11 @@ const CurrencyPicker = () => {
                 onClick={toggleList}
                 >
                 <div className='ml-[10px]'>
-                    <CountryFlag/>
+                    <CountryFlag countryCode={selectedCurrency?.Country || "PL"}/>
                 </div>
                 <div className='text-left ml-[10px]'>
-                    <div className='text-base font-medium'>{"PLN"}</div> 
-                    <div className='text-xs text-gray-600'>{"ZŁoty"}</div>
+                    <div className='text-base font-medium'>{selectedCurrency?.CurrencyCode || "PLN"}</div> 
+                    <div className='text-xs text-gray-600'>{selectedCurrency?.CurrencyName || "ZŁoty"}</div>
                 </div>
             </button>
 
