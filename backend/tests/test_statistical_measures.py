@@ -1,14 +1,13 @@
-from django.test import SimpleTestCase
-
+from django.test import TestCase
 
 # Create your tests here.
-class ExampleTestCase(SimpleTestCase):
+class StatisticalMeasuresTestCase(TestCase):
     def setUp(self):
         self.number1 = 5
         self.number2 = 5
         self.number3 = 4
 
-    def test_example_fn(self):
+    def test_sth_example_fn(self):
         self.assertEqual(self.number1, self.number2)
 
     def test_example_next_fn(self):
