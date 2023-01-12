@@ -39,6 +39,9 @@ const CurrencyPicker = (props: props) => {
     const selectCurrency = (item: Currency) => {
         setCurrency(item);
         toggleList();
+
+        if(props.onChange)
+            props.onChange(item.CurrencyCode)
     }
 
     const onChange = (e: React.FormEvent<HTMLInputElement>) => {
