@@ -46,6 +46,13 @@ const CurrencyPair = () => {
         ],
     };
 
+
+    const fetchData = () => {
+        setLabels(['-2', '-1', '0', '1', '2']);
+        setCurrencyPairData([12,23,34,56,67]);
+        setLabelName(`${currencyPair[0]}/${currencyPair[1]}`)
+    }
+
     const changeCurrency = (currencyCode: string, index: number) => {
         const newCurrencyPair = [...currencyPair];
         newCurrencyPair[index] = currencyCode;
@@ -72,7 +79,7 @@ const CurrencyPair = () => {
                             <div className='text-sm m-[5px] text-slate-600 italic'>-oraz-</div>
                             <CurrencyPicker countryCode='GBP' onChange={(c) => changeCurrency(c, 1)}/>
                         </div>
-                        <Button text='Sprawdź'/>
+                        <Button text='Sprawdź' onClick={fetchData}/>
                     </div>
                 </div>
             </div>
