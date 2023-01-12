@@ -56,6 +56,16 @@ class StatisticalMeasuresTestCase(TestCase):
         self.assertEquals(standard_deviation(self.datasets[9]), 0.106)
         self.assertEquals(standard_deviation(self.datasets[10]), 0)
 
-    #Temporarily disabled bad test
-    # def test_bad_test_that_should_work(self):
-    #     self.assertEqual(self.number2, self.number3)
+    def test_coefficient_of_variation(self):
+        self.assertEquals(coefficient_of_variation(self.datasets[0]), None)
+        self.assertEquals(coefficient_of_variation(self.datasets[1]), None)
+        self.assertEquals(coefficient_of_variation(self.datasets[2]), 66.67)
+        self.assertEquals(coefficient_of_variation(self.datasets[3]), 12.4)
+        self.assertEquals(coefficient_of_variation(self.datasets[4]), 52.22)
+        self.assertEquals(coefficient_of_variation(self.datasets[5]), 52.70)
+        self.assertEquals(coefficient_of_variation(self.datasets[6]), 116.21)
+        self.assertEquals(coefficient_of_variation(self.datasets[7]), -213.05)
+        self.assertEquals(coefficient_of_variation(self.datasets[8]), 11.28)
+        self.assertEquals(coefficient_of_variation(self.datasets[9]), 9.55)
+        self.assertEquals(coefficient_of_variation(self.datasets[10]), 0)
+        
