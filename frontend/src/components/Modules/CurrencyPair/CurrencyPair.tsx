@@ -95,7 +95,7 @@ const CurrencyPair = () => {
             <div className='flex items-center my-[50px]'>
                 <div className='w-[100%] h-[2px] bg-gradient-to-r from-[#F2F3F4] to-gray-500 ml-[50px] mr-[10px]'></div>
                 <span className='text-2xl w-[500px] text-center'>Analiza par walut</span>
-                <div className='w-[100%] h-[1px] bg-zinc-600 mr-[50px] ml-[10px]'></div>
+                <div className='w-[100%] h-[2px] bg-gradient-to-l from-[#F2F3F4] to-gray-500 mr-[50px] ml-[10px]'></div>
 
             </div>
             <div className='grid lg:grid-cols-3 grid-cols-1 mt-[40px]'>
