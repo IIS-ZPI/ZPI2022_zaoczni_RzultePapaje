@@ -69,7 +69,7 @@ const CurrencyPicker = (props: props) => {
 
     useEffect(() => {
         setFilteredCurrency(currencyData);
-        const foundCurrency = currencyData.find(item => item.CurrencyCode === "PL")
+        const foundCurrency = currencyData.find(item => item.CurrencyCode === props.countryCode)
         setCurrency({
             Country: foundCurrency?.Country || "PL",
             CurrencyName: foundCurrency?.CurrencyName || "Złoty",
