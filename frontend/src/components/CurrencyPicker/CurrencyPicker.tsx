@@ -48,7 +48,7 @@ const CurrencyPicker = () => {
     return (
         <div>
             <button 
-                className='border-[2px] border-stone-300 h-[60px] min-w-[200px] rounded-md flex items-center select-none'
+                className='border-[2px] bg-white border-stone-300 h-[60px] min-w-[200px] rounded-md flex items-center select-none'
                 >
                 <div className='ml-[10px]'>
                     <CountryFlag/>
