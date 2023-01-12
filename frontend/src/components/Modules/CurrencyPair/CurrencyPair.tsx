@@ -2,7 +2,22 @@ import React from 'react'
 
 const CurrencyPair = () => {
   return (
-    <div>CurrencyPair</div>
+    <>
+        <div className='flex items-center my-[50px]'>
+            <div className='w-[100%] h-[2px] bg-gradient-to-r from-[#F2F3F4] to-gray-500 ml-[50px] mr-[10px]'></div>
+            <span className='text-2xl w-[500px] text-center'>Analiza par walut</span>
+            <div className='w-[100%] h-[1px] bg-zinc-600 mr-[50px] ml-[10px]'></div>
+        </div>
+        <div className='grid lg:grid-cols-3 grid-cols-1 mt-[40px]'>
+            <div className='lg:col-span-2 col-span-1 lg:row-start-1 row-start-0 mx-[40px] h-[500px] bg-white p-[10px] pb-[100px] rounded-lg shadow'>
+            </div>
+            <div className='flex justify-center row-start-1 lg:row-start-0 mb-[30px]'>
+                <div className='bg-white w-[85%] max-h-[300px] p-[10px] pb-[20px] rounded-lg shadow flex  flex-col items-center'>
+                    <div className='mb-[10px] text-lg font-medium'>Wybierz waluty</div>
+                </div>
+            </div>
+        </div>
+    </>
   )
 }
 
