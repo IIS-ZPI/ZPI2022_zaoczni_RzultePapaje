@@ -6,8 +6,13 @@ import CurrencyPair from '../../components/Modules/CurrencyPair/CurrencyPair'
 const Home = () => {
   return (
         <>
-            <CurrencyPair/>
-            <CurrencyAnalysis/>
+            <div className='mb-[50px]'>
+                <CurrencyPair/>
+            </div>
+
+            <div className='mb-[50px]'>
+                <CurrencyAnalysis/>
+            </div>
         </>
     )
 }

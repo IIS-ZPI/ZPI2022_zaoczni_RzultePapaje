@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Bar } from 'react-chartjs-2';
 import Button from '../../Button/Button';
 import CurrencyPicker from '../../CurrencyPicker/CurrencyPicker';
@@ -85,9 +85,9 @@ const CurrencyAnalysis = () => {
         setCurrencyCode(currencyCode);
     }
 
-    useEffect(() => {
-        fetchData();
-    }, [])
+    // useEffect(() => {
+    //     fetchData();
+    // }, [])
 
     return (
         <>
