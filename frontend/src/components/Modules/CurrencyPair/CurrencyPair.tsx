@@ -9,6 +9,7 @@ const CurrencyPair = () => {
     const [labelName, setLabelName] = useState<string>("");
     const [labels, setLabels] = useState<string[]>(["-2", "-1", "0", '1', "2"]);
     const [currencyPairData, setCurrencyPairData] = useState<number[]>([12,45,65,32,34]);
+    const [selectedTime, setSelectedTime] = useState<number>(0);
 
     const options = {
         responsive: true,
@@ -59,6 +60,32 @@ const CurrencyPair = () => {
         setCurrencyPair(newCurrencyPair);
     }
 
+    const changeSelectedTime = (value: number) => {
+        setSelectedTime(value);
+    }
+
+    const timePeriodName = ['Miesiąc', 'Kwartał']
+
+    const renderTimePeriodButton = () => {
+        return (
+            timePeriodName.map((item, index) => {
+                return (
+                    <button 
+                        className={`border-[2px] border-blue-500 p-[5px] 
+                                    ${index === 0 ? 'rounded-l-lg' : 'border-l-0'}
+                                    ${index ===  timePeriodName.length - 1? 'rounded-r-lg' : ''}
+                                    ${selectedTime === index ? 'bg-blue-500' : ''}
+                                    `}
+                        onClick={() => changeSelectedTime(index)}
+                        key={index}
+                        >
+                        <div className={`font-medium ${selectedTime === index ? 'text-white' : 'text-blue-500'}`}>{item}</div> 
+                    </button>
+                )
+            })
+        )
+    }
+
     return (
         <>
             <div className='flex items-center my-[50px]'>
@@ -69,6 +96,10 @@ const CurrencyPair = () => {
             </div>
             <div className='grid lg:grid-cols-3 grid-cols-1 mt-[40px]'>
                 <div className='lg:col-span-2 col-span-1 lg:row-start-1 row-start-0 mx-[40px] h-[500px] bg-white p-[10px] pb-[100px] rounded-lg shadow'>
+                    <div className='flex justify-center mb-[20px]'>
+                        {renderTimePeriodButton()}
+                    </div>
+
                     <Bar options={options} data={data}/>
                 </div>
                 <div className='flex justify-center row-start-1 lg:row-start-0 mb-[30px]'>
