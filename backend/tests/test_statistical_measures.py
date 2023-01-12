@@ -30,8 +30,19 @@ class StatisticalMeasuresTestCase(TestCase):
         self.assertEquals(median(self.datasets[9]), 1.08111)
         self.assertEquals(median(self.datasets[10]), 0)
 
-    def test_example_next_fn(self):
-        self.assertNotEqual(self.number1, self.number3)
+    def test_dominant(self):
+        self.assertEquals(dominant(self.datasets[0]), None)
+        self.assertEquals(dominant(self.datasets[1]), 5.55)
+        self.assertEquals(dominant(self.datasets[2]), [5.55, 1.11])
+        self.assertEquals(dominant(self.datasets[3]), 196)
+        self.assertEquals(dominant(self.datasets[4]), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        self.assertEquals(dominant(self.datasets[5]), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+        self.assertEquals(dominant(self.datasets[6]), 1.5)
+        self.assertEquals(dominant(self.datasets[7]), 4.2)
+        self.assertEquals(dominant(self.datasets[8]), 1.4)
+        self.assertEquals(dominant(self.datasets[9]), 1.08111)
+        self.assertEquals(dominant(self.datasets[10]), 0)
+
 
     #Temporarily disabled bad test
     # def test_bad_test_that_should_work(self):
