@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Currency, currencyData } from '../../util/CurrencyData';
 import CountryFlag from '../CountryFlag/CountryFlag'
 
-const CurrencyPicker = () => {
+interface props{
+    countryCode?: string,
+    onChange?: (currency: string) => void
+}
+
+const CurrencyPicker = (props: props) => {
     const [inputText, setInputText] = useState<string>("");
     const [filteredCurrency, setFilteredCurrency] = useState<Currency[]>([]);
     const [selectedCurrency, setCurrency] = useState<Currency>();
