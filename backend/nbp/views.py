@@ -14,7 +14,6 @@ def measures(request):
         data_array = []
         #  get the latest date from the database
         date_str = TabelaA.objects.all().order_by("-effective_date")[:1]
-        # first_date = datetime.strptime(data_str[0].effective_date, "%Y-%m-%d")
         first_date = date_str[0].effective_date
         
         for time in time_intervals:
@@ -23,12 +22,11 @@ def measures(request):
             for q in query:
                 data_array.append(float(q[0]))
             temp = {
-                time : {
-                    'medan' : median(data_array),
+                    'time' : time,
+                    'median' : median(data_array),
                     'dominant' : dominant(data_array),
                     'standard_deviation' : standard_deviation(data_array),
                     'coefficient_of_variation' : coefficient_of_variation(data_array),
-                }
             }
             results.append(temp)
  
