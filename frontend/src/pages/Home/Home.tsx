@@ -1,5 +1,5 @@
 import React from 'react'
-import CurrencyPicker from '../../components/CurrencyPicker/CurrencyPicker'
+import CurrencyAnalysis from '../../components/Modules/CurrencyAnalysis/CurrencyAnalysis'
 import CurrencyPair from '../../components/Modules/CurrencyPair/CurrencyPair'
 
 
@@ -7,6 +7,7 @@ const Home = () => {
   return (
         <>
             <CurrencyPair/>
+            <CurrencyAnalysis/>
         </>
     )
 }
