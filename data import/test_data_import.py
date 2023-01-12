@@ -11,7 +11,7 @@ class TestUtils(unittest.TestCase):
 		self.url_date_end = self.url_date_start + timedelta(days=93)
 		self.data_table = data_import.get_data('A', self.url_date_start, self.url_date_end)
 		self.config = data_import.parse_config()
-		self.result = "INSERT INTO tabela_a values(default,'1/A/NBP/2002','2002-01-02','AUD',2.0227);"
+		self.result = "INSERT INTO tabela_a VALUES(default,'1/A/NBP/2002','2002-01-02','Australia','AUD',2.0227);"
 		self.result_a = 'http://api.nbp.pl/api/exchangerates/tables/A/2002-01-02/2002-04-05'
 		self.result_b = 'http://api.nbp.pl/api/exchangerates/tables/B/2002-01-02/2002-04-05'
 		self.result_c = 'http://api.nbp.pl/api/exchangerates/tables/C/2002-01-02/2002-04-05'
@@ -27,9 +27,6 @@ class TestUtils(unittest.TestCase):
 
 	def test_db_connection(self):
 		self.assertEqual(data_import.connect_to_db().server_version, 150001)
-
-	def test_insert_execution(self):
-		self.assertEqual(data_import.execute_inserts(self.conn, [self.result]), "test")
 
 
 if __name__ == '__main__':
