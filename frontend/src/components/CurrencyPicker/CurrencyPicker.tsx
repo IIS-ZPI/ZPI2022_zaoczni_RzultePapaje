@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Currency } from '../../util/CurrencyData';
+import React, { useEffect, useState } from 'react'
+import { Currency, currencyData } from '../../util/CurrencyData';
 import CountryFlag from '../CountryFlag/CountryFlag'
 
 const CurrencyPicker = () => {
@@ -8,6 +8,42 @@ const CurrencyPicker = () => {
     const [selectedCurrency, setCurrency] = useState<Currency>();
     const [isOpen, setOpen] = useState<boolean>(false);
 
+
+    const renderFilteredCurrency = () => {
+        return (
+            filteredCurrency.map((item, index) => {
+                return (
+                    <button 
+                        className='h-[60px] w-[100%] flex items-center select-none hover:bg-gray-100' 
+                        key={index} 
+                        >
+                        <div className='ml-[20px]'>
+                            <CountryFlag countryCode={item.Country} size={40}/>
+                        </div>
+                        <div className='text-left ml-[10px]'>
+                            <div className='text-base font-medium'>{item.CurrencyCode}</div> 
+                            <div className='text-xs text-gray-600'>{item.CurrencyName}</div>
+                        </div>
+                    </button>
+                )
+            })
+        )
+    }
+
+    const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+        const newText = e.currentTarget.value
+        setInputText(newText);
+    }
+
+    useEffect(() => {
+        setFilteredCurrency(currencyData);
+        const foundCurrency = currencyData.find(item => item.CurrencyCode === "PL")
+        setCurrency({
+            Country: foundCurrency?.Country || "PL",
+            CurrencyName: foundCurrency?.CurrencyName || "Złoty",
+            CurrencyCode: foundCurrency?.CurrencyCode || "PLN"
+        })
+    }, []);
 
     return (
         <div>
@@ -33,10 +69,15 @@ const CurrencyPicker = () => {
                         className="placeholder:italic placeholder:text-slate-400 block w-full py-2 pl-9 pr-3 shadow-sm focus:outline-none sm:text-sm" 
                         placeholder="Wpisz walute..." 
                         type="text" 
-                        name="search" 
+                        name="search"
+                        onChange={onChange}
                         value={inputText}
                         />
                 </label>
+
+                <div className='w-[250px] overflow-scroll overflow-x-hidden' style={{height: `${Math.min(5 * 60, filteredCurrency.length * 60)}px`}}>
+                    {renderFilteredCurrency()}
+                </div>
             </div>
         </div>
     )
