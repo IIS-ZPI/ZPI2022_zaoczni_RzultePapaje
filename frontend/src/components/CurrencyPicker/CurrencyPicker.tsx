@@ -75,7 +75,7 @@ const CurrencyPicker = (props: props) => {
             CurrencyName: foundCurrency?.CurrencyName || "Złoty",
             CurrencyCode: foundCurrency?.CurrencyCode || "PLN"
         })
-    }, []);
+    }, [props.countryCode]);
 
     return (
         <div>
